@@ -35,31 +35,30 @@ This License shall be included in all methodal textual files.
 #include            "sStd.h"
 
 /** \addtogroup sCMD 
- * Simple Command Handler
+ * Simple Command Handler.
+ * Create command list with \ref CMDList struct and command handler object using \ref CMD<max> class template. \c max is maximum number of arguments that command handler can accept.
+ * Command handler supports multiple command delimiters(coomand to command, command to arguments and argument to argument). Search for command is case sensitive(cmd != Cmd).
+ * See examples for more info.
  * @{
 */
 
 
-// ----- ENUMATORS
-/**
- * @brief Enumator for delimiter types.
- * 
- */
-enum sCMD_delimiter_t : uint8_t {
-	sCMD_CP = 0, /**< @brief Delimiter between command and parameters. */
-	sCMD_PP = 1 /**< @brief Delimiter between parameters. */
-};
+// ----- MACRO DEFINITIONS
+// DELIMITER TYPES
+#define sCMD_CC			0 /**< @brief Delimiter between commands. */
+#define sCMD_CA			1 /**< @brief Delimiter between command and arguments. */
+#define sCMD_AA			2 /**< @brief Delimiter between arguments. */
 
 
 // ----- TYPEDEFS
 /**
  * @brief Typedef for command handler.
  * 
- * @param args Pointer to argument data.
+ * @param args Pointer to arguments.
  * @param argCnt Number of received arguments/length of \c args
  * @return No return value.
  */
-typedef void (*cmdH)(sStd::Data<char>* args, uint8_t argCnt);
+typedef void (*cmdH)(const char* args, const uint8_t argCnt);
 
 
 // ----- STRUCTS
@@ -68,8 +67,8 @@ typedef void (*cmdH)(sStd::Data<char>* args, uint8_t argCnt);
  * 
  */
 struct CMDList {
-	char* cmd = nullptr;
-	cmdH cmdHandler = nullptr;
+	const char* cmd; /**< @brief Command C-string. */
+	const cmdH cmdHandler; /**< @brief Pointer to command function. See \ref cmdH */
 };
 
 
@@ -82,40 +81,87 @@ template <uint8_t max>
 class CMD {
 	// PUBLIC STUFF
 	public:
+	// CONSTRUCTOR & DECONSTRUCTOR METHOD DECLARATIONS
 	/**
 	 * @brief CMD handler constructor.
 	 * 
 	 * @param list Pointer to list of commands.
 	 * @param len Length of \c list
-	 * @param cpDelimiter Delimiter character between command and parameters.
-	 * @param ppDelimiter Delimiter between parameters.
+	 * @param fallback Pointer to external function that is called when unknown command is found.
+	 * @param ccDelimiter Delimiter character between commands. Default delimiter is \c ;
+	 * @param caDelimiter Delimiter character between command and arguments. Default delimiter is \c ,
+	 * @param aaDelimiter Delimiter character between arguments. Default delimiter is \c ,
 	 * @return No return value.
 	 */
-	CMD(CMDList* list, uint16_t len, char cpDelimiter, char ppDelimiter);
+	CMD(const CMDList* list, uint16_t len, cmdH fallback,  char ccDelimiter = ';', char caDelimiter = ',', char aaDelimiter = ',');
 
 	/**
-	 * @brief CMD handler deconstructor
+	 * @brief CMD handler deconstructor.
 	 * 
 	 * @return No return value.
 	 */
 	~CMD(void);
 
-
 	// METHOD DECLARATIONS
-	void parse(char* input);
-	void setDelimiter(sCMD_delimiter_t type, char delimiter);
-	void getDelimiter(sCMD_delimiter_t type) const;
+	/**
+	 * @brief Parse and execute input C-string.
+	 * 
+	 * @param input Pointer to C-string.
+	 * @param nullAsArg Set to \c 1 to include \c \0 as argument. By default, this parameter is set to \c 0
+	 * @return Number of executed commands.
+	 * 
+	 * @warning This function modifies \c input C-string!
+	 * @note This function parses input C-string from left to right.
+	 */
+	uint8_t exe(char* input, uint8_t nullAsArg = 0);
 
+	/**
+	 * @brief Set delimiter character.
+	 * 
+	 * @param type Delimiter type.
+	 * @param del Delimiter character.
+	 * @return No return value.
+	 */
+	inline void setDelimiter(uint8_t type, char del);
+
+	/**
+	 * @brief Get delimiter character.
+	 * 
+	 * @param type Delimiter type.
+	 * @return Configured delimiter.
+	 */
+	inline char getDelimiter(uint8_t type) const;
 
 
 	// PRIVATE STUFF
 	private:
-	CMDList* cmdList = nullptr; /**< @brief Pointer to external list of commands.  */
-	uint16_t cmdListLen = 0; /**< @brief Length of \c cmdList */
-	sStd::Data<char> args[max]; /**< @brief Data object for command's arguments. */
-	uint8_t maxArgs = max; /**< @brief Length of \c args array. */
-	char delimiter[2] = { '\0', '\0' }; /**< @brief Array for delimiters. */
+	// VARIABLES
+	const CMDList* cmdList; /**< @brief Pointer to external list of commands.  */
+	uint16_t cmdListLen = 0; /**< @brief Length of \ref cmdList */
+	/**
+	 * @brief Pointer to external fallback function.
+	 * 
+	 * This function is called when unknown command is found.
+	 * Function parameter \c args points to command C-string that does not exist. See \ref cmdH
+	 */
+	cmdH cmdFallback = nullptr;
+	char* args[max]; /**< @brief Pointer to all command's arguments. */
+	uint8_t maxArgs = max; /**< @brief Length of \ref args array. */
+	char delimiter[3] = { '\0', '\0', '\0' }; /**< @brief Array with CC, CA and AA delimiters. */
 };
+
+
+// ----- STATIC FUNCTION DECLARATIONS
+/**
+ * @brief Find \c input command in \c cmdList
+ * 
+ * @param input Pointer to command C-string.
+ * @param cmdList Pointer to external command list.
+ * @param len Length of \c cmdList
+ * @return \c -1 if command is not found.
+ * @return Index of command in \c cmdList if command is found.
+ */
+static int16_t findCmd(const char* input, const CMDList* cmdList, const uint16_t len);
 
 
 /** @}*/
