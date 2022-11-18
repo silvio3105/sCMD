@@ -136,18 +136,18 @@ class CMD {
 	// PRIVATE STUFF
 	private:
 	// VARIABLES
-	const CMDList* cmdList; /**< @brief Pointer to external list of commands.  */
-	uint16_t cmdListLen = 0; /**< @brief Length of \ref cmdList */
 	/**
 	 * @brief Pointer to external fallback function.
 	 * 
-	 * This function is called when unknown command is found.
+	 * This function is called when command is not found.
 	 * Function parameter \c args points to command C-string that does not exist. See \ref cmdH
 	 */
-	cmdH cmdFallback = nullptr;
-	char* args[max]; /**< @brief Pointer to all command's arguments. */
+	cmdH cmdFallback = nullptr;	
+	const CMDList* cmdList; /**< @brief Pointer to external list of commands.  */
 	uint8_t maxArgs = max; /**< @brief Length of \ref args array. */
 	char delimiter[3] = { '\0', '\0', '\0' }; /**< @brief Array with CC, CA and AA delimiters. */
+	char* args[max]; /**< @brief Pointer to all command's arguments. */	
+	uint16_t cmdListLen = 0; /**< @brief Length of \ref cmdList */
 };
 
 
