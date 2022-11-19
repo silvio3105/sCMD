@@ -1,8 +1,28 @@
 
 # Simple Command Handler
 
-Soon!
+This is Simple Command Handler library. It is frameworkless library for parsing C-string and executing found commands. 
+It written in C++ and requires [sSTD](https://github.com/silvio3105/sSTD) library.
 
+Library can parse and execute multiple commands with next format: `cmd1:param1,...,paramN;...;cmdN:param1,...,paramN;` where:
+
+- `;` is delimiter between commands.
+- `:` is delimiter between command and arguments.
+- `,` is delimiter between arguments.
+
+Command to arguments and argument delimiters can be same, only command to command delimiter have to be different. Input C-string have to be NULL terminated. List of commands does not need to end with command to command delimiter.
+
+To create object for handling commands: `CMD<N> cmd = CMD<N>(...);` where `N` is maximum number of arguments command hanlder can handle.
+Example: `CMD<4> cmd = CMD<4>(list, 2, fallback, ';', ':', ',');` where:
+
+- `list` is pointer to list of commands.
+- `2` is length of `list`.
+- `fallback` is pointer to fallback function.
+- `;` is command to command delimiter.
+- `:` is command to arguments delimiter.
+- `,` is argument to argument delimiter.
+
+Check library documentation and example codes for more information.
 Library documentation is available at `.docs/html/index.html`.
 Example applications are available at `examples` folder. All examples are made with STM HAL framework.
 

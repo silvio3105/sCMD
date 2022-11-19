@@ -36,9 +36,12 @@ This License shall be included in all methodal textual files.
 
 /** \addtogroup sCMD 
  * Simple Command Handler.
+ * 
+ * Command format is: \c cmd1:param1,...,paramN;...;cmdN:param1,...,paramN where \c ; is coomand to command delimiter, \c : command to argument delimiter and \c , argument to argument delimiter. Command can be without arguments.
+ * 
  * Create command list with \ref CMDList struct and command handler object using \ref CMD<max> class template. \c max is maximum number of arguments that command handler can accept.
  * Command handler supports multiple command delimiters(coomand to command, command to arguments and argument to argument). Search for command is case sensitive(cmd != Cmd).
- * See examples for more info.
+ * See examples for beter understanding.
  * @{
 */
 

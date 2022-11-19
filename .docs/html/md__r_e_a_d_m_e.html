@@ -94,8 +94,24 @@ $(document).ready(function(){initNavTree('md__r_e_a_d_m_e.html',''); initResizab
   <div class="headertitle"><div class="title">Simple Command Handler </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p >Soon!</p>
-<p >Library documentation is available at <code>.docs/html/index.html</code>. Example applications are available at <code>examples</code> folder. All examples are made with STM HAL framework.</p>
+<div class="textblock"><p >This is Simple Command Handler library. It is frameworkless library for parsing C-string and executing found commands. It written in C++ and requires <a href="https://github.com/silvio3105/sSTD">sSTD</a> library.</p>
+<p >Library can parse and execute multiple commands with next format: <code>cmd1:param1,...,paramN;...;cmdN:param1,...,paramN;</code> where:</p>
+<ul>
+<li><code>;</code> is delimiter between commands.</li>
+<li><code>:</code> is delimiter between command and arguments.</li>
+<li><code>,</code> is delimiter between arguments.</li>
+</ul>
+<p >Command to arguments and argument delimiters can be same, only command to command delimiter have to be different. Input C-string have to be NULL terminated. List of commands does not need to end with command to command delimiter.</p>
+<p >To create object for handling commands: <code><a class="el" href="class_c_m_d.html" title="Class for command hanlder.">CMD</a>&lt;N&gt; cmd = <a class="el" href="class_c_m_d.html" title="Class for command hanlder.">CMD</a>&lt;N&gt;(...);</code> where <code>N</code> is maximum number of arguments command hanlder can handle. Example: &lsquo;CMD&lt;4&gt; cmd = CMD&lt;4&gt;(list, 2, fallback, &rsquo;;', ':', ',');` where:</p>
+<ul>
+<li><code>list</code> is pointer to list of commands.</li>
+<li><code>2</code> is length of <code>list</code>.</li>
+<li><code>fallback</code> is pointer to fallback function.</li>
+<li><code>;</code> is command to command delimiter.</li>
+<li><code>:</code> is command to arguments delimiter.</li>
+<li><code>,</code> is argument to argument delimiter.</li>
+</ul>
+<p >Check library documentation and example codes for more information. Library documentation is available at <code>.docs/html/index.html</code>. Example applications are available at <code>examples</code> folder. All examples are made with STM HAL framework.</p>
 <h1><a class="anchor" id="autotoc_md1"></a>
 License</h1>
 <p >Copyright (c) 2022, silvio3105 (www.github.com/silvio3105)</p>
@@ -110,7 +126,7 @@ License</h1>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Fri Nov 18 2022 21:42:25 for sCMD by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5 </li>
+    <li class="footer">Generated on Sat Nov 19 2022 23:27:21 for sCMD by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5 </li>
   </ul>
 </div>
 </body>
