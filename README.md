@@ -10,11 +10,12 @@ Library can parse and execute multiple commands with next format: `cmd1:param1,.
 - `:` is delimiter between command and arguments.
 - `,` is delimiter between arguments.
 
-Command to arguments and argument delimiters can be same, only command to command delimiter have to be different. Input C-string have to be NULL terminated. List of commands does not need to end with command to command delimiter.
+Command to arguments and argument to argument delimiters can be same, only command to command delimiter have to be different. Input C-string have to be NULL terminated. List of commands does not need to end with command to command delimiter.
 
 To create object for handling commands: `CMD<N> cmd = CMD<N>(...);` where `N` is maximum number of arguments command hanlder can handle.
 Example: `CMD<4> cmd = CMD<4>(list, 2, fallback, ';', ':', ',');` where:
 
+- `4` in angled bracked means handler `cmd` can handle maximum 4 arguments.
 - `list` is pointer to list of commands.
 - `2` is length of `list`.
 - `fallback` is pointer to fallback function.
