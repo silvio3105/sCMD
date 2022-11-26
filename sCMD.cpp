@@ -133,11 +133,12 @@ uint8_t CMD<max>::exe(char* input, uint8_t nullAsArg)
     
     		// Call fallback handler if command was not found
     		if (cmdIdx == -1) cmdFallback((const char**)currCmd, 0);
-    		else // Command is found, call command handler and pass arguments
+    		else // Command is found
 			{		
+				// Call command arguments
 				cmdList[cmdIdx].cmdHandler((const char**)args, argCnt);
 
-				// Increas command counter
+				// Increase command counter
 				cmdCnt++;
 			}   
         }
@@ -151,12 +152,14 @@ uint8_t CMD<max>::exe(char* input, uint8_t nullAsArg)
 template <uint8_t max>
 inline void CMD<max>::setDelimiter(uint8_t type, char del)
 {
+	// Set delimiter for type
 	delimiter[type] = del;
 }
 
 template <uint8_t max>
 inline char CMD<max>::getDelimiter(uint8_t type) const
 {
+	// Get delimiter for type
 	return delimiter[type];
 }
 
