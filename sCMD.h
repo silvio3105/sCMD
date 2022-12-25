@@ -2,8 +2,6 @@
  * @file sCMD.h
  * @author silvio3105 (www.github.com/silvio3105)
  * @brief Simple Command Handler header file.
- * @version v0.1
- * @date 13.11.2022
  * 
  * @copyright Copyright (c) 2022, silvio3105
  * 
@@ -61,7 +59,7 @@ This License shall be included in all methodal textual files.
  * @param argCnt Number of received arguments/length of \c args
  * @return No return value.
  */
-typedef void (*cmdH)(const char* args, const uint8_t argCnt);
+typedef void (*cmdH)(const char** args, const uint8_t argCnt);
 
 
 // ----- STRUCTS
@@ -75,13 +73,27 @@ struct CMDList {
 };
 
 
+// ----- FUNCTION DECLARATIONS
+/**
+ * @brief Find \c input command in \c cmdList
+ * 
+ * @param input Pointer to command C-string.
+ * @param cmdList Pointer to external command list.
+ * @param len Length of \c cmdList
+ * @return \c -1 if command is not found.
+ * @return Index of command in \c cmdList if command is found.
+ */
+int16_t findCmd(const char* input, const CMDList* cmdList, const uint16_t len);
+
+
 // ----- CLASSES
-template <uint8_t max>
 /**
  * @brief Class for command hanlder.
  * 
+ * @tparam max Maximum number of arguments command handler can handle for one command.
  */
-class CMD {
+template <uint8_t max>
+class CMDHandler {
 	// PUBLIC STUFF
 	public:
 	// CONSTRUCTOR & DECONSTRUCTOR METHOD DECLARATIONS
@@ -96,14 +108,40 @@ class CMD {
 	 * @param aaDelimiter Delimiter character between arguments. Default delimiter is \c ,
 	 * @return No return value.
 	 */
-	CMD(const CMDList* list, uint16_t len, cmdH fallback,  char ccDelimiter = ';', char caDelimiter = ',', char aaDelimiter = ',');
+	CMDHandler(const CMDList* list, uint16_t len, cmdH fallback,  char ccDelimiter = ';', char caDelimiter = ',', char aaDelimiter = ',')
+	{
+		// Set command list
+		cmdList = list;
+		cmdListLen = len;
+
+		// Set fallback function
+		cmdFallback = fallback;
+
+		// Set delimiters
+		setDelimiter(sCMD_CC, ccDelimiter);
+		setDelimiter(sCMD_CA, caDelimiter);
+		setDelimiter(sCMD_AA, aaDelimiter);		
+	}
 
 	/**
 	 * @brief CMD handler deconstructor.
 	 * 
 	 * @return No return value.
 	 */
-	~CMD(void);
+	~CMDHandler(void)
+	{
+		// Reset command list
+		cmdList = nullptr;
+		cmdListLen = 0;
+
+		// Reset fallback
+		cmdFallback = nullptr;
+
+		// Reset delimiters
+		setDelimiter(sCMD_CC, '\0');
+		setDelimiter(sCMD_CA, '\0');
+		setDelimiter(sCMD_AA, '\0');		
+	}
 
 	// METHOD DECLARATIONS
 	/**
@@ -116,7 +154,85 @@ class CMD {
 	 * @warning This function modifies \c input C-string!
 	 * @note This function parses input C-string from left to right.
 	 */
-	uint8_t exe(char* input, uint8_t nullAsArg = 0);
+	uint8_t exe(char* input, uint8_t nullAsArg = 0)
+	{
+		char* nextCmd = nullptr;
+		char* nextArg = nullptr;
+		char* currCmd = nullptr;
+		char* currArg = nullptr;	
+		int16_t cmdIdx = -1;
+		uint8_t argCnt = 0;
+		uint8_t cmdCnt = 0;
+
+		// Set pointer to first command
+		nextCmd = input;
+
+		// While next command is found
+		do
+		{
+			// Reset argument counter
+			argCnt = 0;
+
+			// Copy command start address
+			currCmd = nextCmd;
+
+			// Find next command
+			nextCmd = sStd::tok(nextCmd, delimiter[sCMD_CC]);
+
+			// Find start address of first argument
+			nextArg = sStd::tok(currCmd, delimiter[sCMD_CA]);
+			
+			// If argument part is found
+			if (nextArg)
+			{
+				// While command to argument delimiter is found
+				do
+				{
+					// Stop parsing arguments if argument limit is reached
+					if (argCnt == maxArgs) break;
+
+					// Copy argument start address
+					currArg = nextArg;
+		
+					// Find next argument
+					nextArg = sStd::tok(nextArg, delimiter[sCMD_AA]);    		    
+		
+					// If current argument is not \0 or if nullAsArg is set to 1
+					if (*currArg || nullAsArg)
+					{
+						// Copy argument's start address to argument array
+						args[argCnt] = currArg;
+			
+						// Increase argument counter
+						argCnt++;
+					}
+				}
+				while (nextArg);
+			}
+
+			// If current command is not \0
+			if (*currCmd)
+			{
+				// Find command index in command list
+				cmdIdx = findCmd(currCmd, cmdList, cmdListLen);
+		
+				// Call fallback handler if command was not found
+				if (cmdIdx == -1) cmdFallback((const char**)currCmd, 0);
+				else // Command is found
+				{		
+					// Call command arguments
+					cmdList[cmdIdx].cmdHandler((const char**)args, argCnt);
+
+					// Increase command counter
+					cmdCnt++;
+				}   
+			}
+		}
+		while (nextCmd);
+		
+		// Return number of executed commands
+		return cmdCnt;		
+	}
 
 	/**
 	 * @brief Set delimiter character.
@@ -125,7 +241,11 @@ class CMD {
 	 * @param del Delimiter character.
 	 * @return No return value.
 	 */
-	inline void setDelimiter(uint8_t type, char del);
+	inline void setDelimiter(uint8_t type, char del)
+	{
+		// Set delimiter for the type
+		delimiter[type] = del;
+	}
 
 	/**
 	 * @brief Get delimiter character.
@@ -133,7 +253,11 @@ class CMD {
 	 * @param type Delimiter type.
 	 * @return Configured delimiter.
 	 */
-	inline char getDelimiter(uint8_t type) const;
+	inline char getDelimiter(uint8_t type) const
+	{
+		// Get delimiter for the type
+		return delimiter[type];
+	}
 
 
 	// PRIVATE STUFF
@@ -152,19 +276,6 @@ class CMD {
 	char* args[max]; /**< @brief Pointer to all command's arguments. */	
 	uint16_t cmdListLen = 0; /**< @brief Length of \ref cmdList */
 };
-
-
-// ----- STATIC FUNCTION DECLARATIONS
-/**
- * @brief Find \c input command in \c cmdList
- * 
- * @param input Pointer to command C-string.
- * @param cmdList Pointer to external command list.
- * @param len Length of \c cmdList
- * @return \c -1 if command is not found.
- * @return Index of command in \c cmdList if command is found.
- */
-static int16_t findCmd(const char* input, const CMDList* cmdList, const uint16_t len);
 
 
 /** @}*/
