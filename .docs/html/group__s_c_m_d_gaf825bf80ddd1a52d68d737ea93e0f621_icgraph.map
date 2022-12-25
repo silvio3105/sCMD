@@ -1,0 +1,4 @@
+<map id="findCmd" name="findCmd">
+<area shape="rect" id="node1" title="Find input command in cmdList." alt="" coords="177,5,248,31"/>
+<area shape="rect" id="node2" href="$class_c_m_d_handler.html#a81e71d6d511bd21237c40366bc31cf59" title="Parse and execute input C&#45;string." alt="" coords="5,5,129,31"/>
+</map>
