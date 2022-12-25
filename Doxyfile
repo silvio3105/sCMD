@@ -48,13 +48,13 @@ PROJECT_NAME           = sCMD
 # could be handy for archiving the generated documentation or if some version
 # control system is used.
 
-PROJECT_NUMBER         = v1.0rc1
+PROJECT_NUMBER         = v1.0r1
 
 # Using the PROJECT_BRIEF tag one can provide an optional one line description
 # for a project that appears at the top of each page and should give viewer a
 # quick idea about the purpose of the project. Keep the description short.
 
-PROJECT_BRIEF          = "Simple Command handler written in C++."
+PROJECT_BRIEF          = "Frameworkless simple command handler written in C++."
 
 # With the PROJECT_LOGO tag one can specify a logo or an icon that is included
 # in the documentation. The maximum height of the logo should not exceed 55

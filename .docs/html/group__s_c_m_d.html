@@ -26,9 +26,9 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">sCMD<span id="projectnumber">&#160;v1.0rc1</span>
+   <div id="projectname">sCMD<span id="projectnumber">&#160;v1.0r1</span>
    </div>
-   <div id="projectbrief">Simple Command handler written in C++.</div>
+   <div id="projectbrief">Frameworkless simple command handler written in C++.</div>
   </td>
  </tr>
  </tbody>
@@ -94,7 +94,8 @@ $(document).ready(function(){initNavTree('group__s_c_m_d.html',''); initResizabl
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#define-members">Macros</a> &#124;
-<a href="#typedef-members">Typedefs</a>  </div>
+<a href="#typedef-members">Typedefs</a> &#124;
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle"><div class="title">SCMD</div></div>
 </div><!--header-->
 <div class="contents">
@@ -104,8 +105,8 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_c_m_d_list.html">CMDList</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Struct for command.  <a href="struct_c_m_d_list.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_m_d.html">CMD&lt; max &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class for command hanlder.  <a href="class_c_m_d.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_m_d_handler.html">CMDHandler&lt; max &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class for command hanlder.  <a href="class_c_m_d_handler.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
@@ -122,14 +123,20 @@ Macros</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
 Typedefs</h2></td></tr>
-<tr class="memitem:ga9918cf9d54732993eeee8cdbd56ea4c1"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__s_c_m_d.html#ga9918cf9d54732993eeee8cdbd56ea4c1">cmdH</a>) (const char *args, const uint8_t argCnt)</td></tr>
-<tr class="memdesc:ga9918cf9d54732993eeee8cdbd56ea4c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Typedef for command handler.  <a href="group__s_c_m_d.html#ga9918cf9d54732993eeee8cdbd56ea4c1">More...</a><br /></td></tr>
-<tr class="separator:ga9918cf9d54732993eeee8cdbd56ea4c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab7d31f894b743026908bea0c58929204"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__s_c_m_d.html#gab7d31f894b743026908bea0c58929204">cmdH</a>) (const char **args, const uint8_t argCnt)</td></tr>
+<tr class="memdesc:gab7d31f894b743026908bea0c58929204"><td class="mdescLeft">&#160;</td><td class="mdescRight">Typedef for command handler.  <a href="group__s_c_m_d.html#gab7d31f894b743026908bea0c58929204">More...</a><br /></td></tr>
+<tr class="separator:gab7d31f894b743026908bea0c58929204"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:gaf825bf80ddd1a52d68d737ea93e0f621"><td class="memItemLeft" align="right" valign="top">int16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__s_c_m_d.html#gaf825bf80ddd1a52d68d737ea93e0f621">findCmd</a> (const char *input, const <a class="el" href="struct_c_m_d_list.html">CMDList</a> *cmdList, const uint16_t len)</td></tr>
+<tr class="memdesc:gaf825bf80ddd1a52d68d737ea93e0f621"><td class="mdescLeft">&#160;</td><td class="mdescRight">Find <code>input</code> command in <code>cmdList</code>.  <a href="group__s_c_m_d.html#gaf825bf80ddd1a52d68d737ea93e0f621">More...</a><br /></td></tr>
+<tr class="separator:gaf825bf80ddd1a52d68d737ea93e0f621"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p >Simple Command Handler.</p>
 <p >Command format is: <code>cmd1:param1</code>,...,paramN;...;cmdN:param1,...,paramN where <code></code>; is coomand to command delimiter, <code></code>: command to argument delimiter and <code></code>, argument to argument delimiter. Command can be without arguments.</p>
-<p >Create command list with <a class="el" href="struct_c_m_d_list.html">CMDList</a> struct and command handler object using <a class="el" href="class_c_m_d.html">CMD&lt;max&gt;</a> class template. <code>max</code> is maximum number of arguments that command handler can accept. Command handler supports multiple command delimiters(coomand to command, command to arguments and argument to argument). Search for command is case sensitive(cmd != Cmd). See examples for beter understanding. </p>
+<p >Create command list with <a class="el" href="struct_c_m_d_list.html">CMDList</a> struct and command handler object using CMD&lt;max&gt; class template. <code>max</code> is maximum number of arguments that command handler can accept. Command handler supports multiple command delimiters(coomand to command, command to arguments and argument to argument). Search for command is case sensitive(cmd != Cmd). See examples for beter understanding. </p>
 <h2 class="groupheader">Macro Definition Documentation</h2>
 <a id="gabf41a56387b606234547248a5cf74164" name="gabf41a56387b606234547248a5cf74164"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#gabf41a56387b606234547248a5cf74164">&#9670;&#160;</a></span>sCMD_AA</h2>
@@ -145,7 +152,7 @@ Typedefs</h2></td></tr>
 
 <p>Delimiter between arguments. </p>
 
-<p class="definition">Definition at line <a class="el" href="s_c_m_d_8h_source.html#l00053">53</a> of file <a class="el" href="s_c_m_d_8h_source.html">sCMD.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="s_c_m_d_8h_source.html#l00051">51</a> of file <a class="el" href="s_c_m_d_8h_source.html">sCMD.h</a>.</p>
 
 </div>
 </div>
@@ -163,7 +170,7 @@ Typedefs</h2></td></tr>
 
 <p>Delimiter between command and arguments. </p>
 
-<p class="definition">Definition at line <a class="el" href="s_c_m_d_8h_source.html#l00052">52</a> of file <a class="el" href="s_c_m_d_8h_source.html">sCMD.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="s_c_m_d_8h_source.html#l00050">50</a> of file <a class="el" href="s_c_m_d_8h_source.html">sCMD.h</a>.</p>
 
 </div>
 </div>
@@ -181,19 +188,19 @@ Typedefs</h2></td></tr>
 
 <p>Delimiter between commands. </p>
 
-<p class="definition">Definition at line <a class="el" href="s_c_m_d_8h_source.html#l00051">51</a> of file <a class="el" href="s_c_m_d_8h_source.html">sCMD.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="s_c_m_d_8h_source.html#l00049">49</a> of file <a class="el" href="s_c_m_d_8h_source.html">sCMD.h</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Typedef Documentation</h2>
-<a id="ga9918cf9d54732993eeee8cdbd56ea4c1" name="ga9918cf9d54732993eeee8cdbd56ea4c1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga9918cf9d54732993eeee8cdbd56ea4c1">&#9670;&#160;</a></span>cmdH</h2>
+<a id="gab7d31f894b743026908bea0c58929204" name="gab7d31f894b743026908bea0c58929204"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gab7d31f894b743026908bea0c58929204">&#9670;&#160;</a></span>cmdH</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef void(* cmdH) (const char *args, const uint8_t argCnt)</td>
+          <td class="memname">typedef void(* cmdH) (const char **args, const uint8_t argCnt)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -208,7 +215,77 @@ Typedefs</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>No return value. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="s_c_m_d_8h_source.html#l00064">64</a> of file <a class="el" href="s_c_m_d_8h_source.html">sCMD.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="s_c_m_d_8h_source.html#l00062">62</a> of file <a class="el" href="s_c_m_d_8h_source.html">sCMD.h</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="gaf825bf80ddd1a52d68d737ea93e0f621" name="gaf825bf80ddd1a52d68d737ea93e0f621"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaf825bf80ddd1a52d68d737ea93e0f621">&#9670;&#160;</a></span>findCmd()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int16_t findCmd </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>input</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="struct_c_m_d_list.html">CMDList</a> *&#160;</td>
+          <td class="paramname"><em>cmdList</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const uint16_t&#160;</td>
+          <td class="paramname"><em>len</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Find <code>input</code> command in <code>cmdList</code>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">input</td><td>Pointer to command C-string. </td></tr>
+    <tr><td class="paramname">cmdList</td><td>Pointer to external command list. </td></tr>
+    <tr><td class="paramname">len</td><td>Length of <code>cmdList</code> </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><code>-1</code> if command is not found. </dd>
+<dd>
+Index of command in <code>cmdList</code> if command is found.</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">input</td><td>Pointer to command C-string. </td></tr>
+    <tr><td class="paramname">cmdList</td><td>Pointer to external command list. </td></tr>
+    <tr><td class="paramname">len</td><td>Length of <code>cmdList</code> </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><code>-1</code> if command is not found. </dd>
+<dd>
+Index of command in <code>cmdList</code> if command is found. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="s_c_m_d_8cpp_source.html#l00047">47</a> of file <a class="el" href="s_c_m_d_8cpp_source.html">sCMD.cpp</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__s_c_m_d_gaf825bf80ddd1a52d68d737ea93e0f621_icgraph.png" border="0" usemap="#agroup__s_c_m_d_gaf825bf80ddd1a52d68d737ea93e0f621_icgraph" alt=""/></div>
+<map name="agroup__s_c_m_d_gaf825bf80ddd1a52d68d737ea93e0f621_icgraph" id="agroup__s_c_m_d_gaf825bf80ddd1a52d68d737ea93e0f621_icgraph">
+<area shape="rect" title="Find input command in cmdList." alt="" coords="177,5,248,31"/>
+<area shape="rect" href="class_c_m_d_handler.html#a81e71d6d511bd21237c40366bc31cf59" title="Parse and execute input C&#45;string." alt="" coords="5,5,129,31"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -217,7 +294,7 @@ Typedefs</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Sat Nov 26 2022 22:30:06 for sCMD by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5 </li>
+    <li class="footer">Generated on Sun Dec 25 2022 22:15:15 for sCMD by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5 </li>
   </ul>
 </div>
 </body>
