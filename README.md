@@ -2,7 +2,7 @@
 # Simple Command Handler
 
 This is Simple Command Handler library. It is frameworkless library for parsing C-string and executing found commands. 
-It written in C++ and requires [sSTD](https://github.com/silvio3105/sSTD) library.
+It is written in C++ and requires [sSTD](https://github.com/silvio3105/sSTD) library.
 
 Library can parse and execute multiple commands with next format: `cmd1:param1,...,paramN;...;cmdN:param1,...,paramN;` where:
 
@@ -12,13 +12,13 @@ Library can parse and execute multiple commands with next format: `cmd1:param1,.
 
 Command to arguments and argument to argument delimiters can be same, only command to command delimiter have to be different. Input C-string have to be NULL terminated. List of commands does not need to end with command to command delimiter.
 
-To create object for handling commands: `CMD<N> cmd = CMD<N>(...);` where `N` is maximum number of arguments command hanlder can handle.
+To create object for handling commands: `CMD<N> cmd = CMD<N>(...);` where `N` is maximum number of arguments command hanlder can handle for each command.
 Example: `CMD<4> cmd = CMD<4>(list, 2, fallback, ';', ':', ',');` where:
 
-- `4` in angled bracked means handler `cmd` can handle maximum 4 arguments.
+- `4` in angled bracked means handler `cmd` can handle maximum 4 arguments per command.
 - `list` is pointer to list of commands.
-- `2` is length of `list`.
-- `fallback` is pointer to fallback function.
+- `2` is size of `list`.
+- `fallback` is pointer to fallback function. It is called for unknown commands.
 - `;` is command to command delimiter.
 - `:` is command to arguments delimiter.
 - `,` is argument to argument delimiter.
