@@ -26,7 +26,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">sCMD<span id="projectnumber">&#160;v1.0r1</span>
+   <div id="projectname">sCMD<span id="projectnumber">&#160;v1.1r1</span>
    </div>
    <div id="projectbrief">Frameworkless simple command handler written in C++.</div>
   </td>
@@ -112,7 +112,12 @@ $(document).ready(function(){initNavTree('md__r_e_a_d_m_e.html',''); initResizab
 <li><code>:</code> is command to arguments delimiter.</li>
 <li><code>,</code> is argument to argument delimiter.</li>
 </ul>
-<p >Check library documentation and example codes for more information. Library documentation is available at <code>.docs/html/index.html</code>. Example applications are available at <code>examples</code> folder. All examples are made with STM HAL framework.</p>
+<p ><code>list</code> is an array with commands, handlers and command descriptions. </p><div class="fragment"><div class="line">CMDList cmdList[] = {</div>
+<div class="line">    SCMD_ADD(help, &quot;&quot;), // No description</div>
+<div class="line">    SCMD_ADD(reset, &quot;Reset the device&quot;),</div>
+<div class="line">    SCMD_ADD(info, &quot;Get device info&quot;)</div>
+<div class="line">};</div>
+</div><!-- fragment --><p >Check library documentation and example codes for more information. Library documentation is available at <code>.docs/html/index.html</code>. Example applications are available at <code>examples</code> folder. All examples are made with STM HAL framework.</p>
 <h1><a class="anchor" id="autotoc_md1"></a>
 License</h1>
 <p >Copyright (c) 2022, silvio3105 (www.github.com/silvio3105)</p>
@@ -127,7 +132,7 @@ License</h1>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Sun Dec 25 2022 22:15:15 for sCMD by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5 </li>
+    <li class="footer">Generated on Wed Feb 22 2023 20:25:37 for sCMD by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5 </li>
   </ul>
 </div>
 </body>

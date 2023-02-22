@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['scmd_5fdelimiter_5ft_0',['sCMD_delimiter_t',['../group__s_c_m_d.html#gaa0fcdbeaec020e98af1c24f2f9fa199d',1,'sCMD.h']]]
+  ['scmd_5fdel_5ft_0',['sCMD_del_t',['../group__s_c_m_d.html#gab7b50b228ddfc95179ddc0b5f3541c78',1,'sCMD.h']]]
 ];

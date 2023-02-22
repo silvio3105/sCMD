@@ -1,5 +1,5 @@
 var annotated_dup =
 [
-    [ "CMDHandler", "class_c_m_d_handler.html", "class_c_m_d_handler" ],
-    [ "CMDList", "struct_c_m_d_list.html", "struct_c_m_d_list" ]
+    [ "sCMD", "classs_c_m_d.html", "classs_c_m_d" ],
+    [ "sCMDList", "structs_c_m_d_list.html", "structs_c_m_d_list" ]
 ];

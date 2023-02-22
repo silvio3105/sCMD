@@ -26,7 +26,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">sCMD<span id="projectnumber">&#160;v1.0r1</span>
+   <div id="projectname">sCMD<span id="projectnumber">&#160;v1.0r2</span>
    </div>
    <div id="projectbrief">Frameworkless simple command handler written in C++.</div>
   </td>
@@ -98,7 +98,7 @@ $(document).ready(function(){initNavTree('class_c_m_d_handler.html',''); initRes
 </div><!--header-->
 <div class="contents">
 
-<p>Class for command hanlder.  
+<p>Class for command handler.  
  <a href="class_c_m_d_handler.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="s_c_m_d_8h_source.html">sCMD.h</a>&gt;</code></p>
@@ -114,16 +114,16 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a81e71d6d511bd21237c40366bc31cf59"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_m_d_handler.html#a81e71d6d511bd21237c40366bc31cf59">exe</a> (char *input, uint8_t nullAsArg=0)</td></tr>
 <tr class="memdesc:a81e71d6d511bd21237c40366bc31cf59"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parse and execute input C-string.  <a href="class_c_m_d_handler.html#a81e71d6d511bd21237c40366bc31cf59">More...</a><br /></td></tr>
 <tr class="separator:a81e71d6d511bd21237c40366bc31cf59"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a296dc2f654b585e7cb29caa69452d432"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_m_d_handler.html#a296dc2f654b585e7cb29caa69452d432">setDelimiter</a> (uint8_t type, char del)</td></tr>
-<tr class="memdesc:a296dc2f654b585e7cb29caa69452d432"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set delimiter character.  <a href="class_c_m_d_handler.html#a296dc2f654b585e7cb29caa69452d432">More...</a><br /></td></tr>
-<tr class="separator:a296dc2f654b585e7cb29caa69452d432"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa8501ee9fae636c4d0fc2311cab3a54b"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_m_d_handler.html#aa8501ee9fae636c4d0fc2311cab3a54b">getDelimiter</a> (uint8_t type) const</td></tr>
-<tr class="memdesc:aa8501ee9fae636c4d0fc2311cab3a54b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get delimiter character.  <a href="class_c_m_d_handler.html#aa8501ee9fae636c4d0fc2311cab3a54b">More...</a><br /></td></tr>
-<tr class="separator:aa8501ee9fae636c4d0fc2311cab3a54b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a54ef63e2e190efe814b5cfadc1e8c781"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_m_d_handler.html#a54ef63e2e190efe814b5cfadc1e8c781">setDelimiter</a> (<a class="el" href="group__s_c_m_d.html#gab7b50b228ddfc95179ddc0b5f3541c78">sCMD_del_t</a> type, char del)</td></tr>
+<tr class="memdesc:a54ef63e2e190efe814b5cfadc1e8c781"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set delimiter character.  <a href="class_c_m_d_handler.html#a54ef63e2e190efe814b5cfadc1e8c781">More...</a><br /></td></tr>
+<tr class="separator:a54ef63e2e190efe814b5cfadc1e8c781"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae9ba05153e1ceda678e45ac52f151102"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_m_d_handler.html#ae9ba05153e1ceda678e45ac52f151102">getDelimiter</a> (<a class="el" href="group__s_c_m_d.html#gab7b50b228ddfc95179ddc0b5f3541c78">sCMD_del_t</a> type) const</td></tr>
+<tr class="memdesc:ae9ba05153e1ceda678e45ac52f151102"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get delimiter character.  <a href="class_c_m_d_handler.html#ae9ba05153e1ceda678e45ac52f151102">More...</a><br /></td></tr>
+<tr class="separator:ae9ba05153e1ceda678e45ac52f151102"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;uint8_t max&gt;<br />
-class CMDHandler&lt; max &gt;</div><p >Class for command hanlder. </p>
+class CMDHandler&lt; max &gt;</div><p >Class for command handler. </p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">max</td><td>Maximum number of arguments command handler can handle for one command. </td></tr>
@@ -131,7 +131,7 @@ class CMDHandler&lt; max &gt;</div><p >Class for command hanlder. </p>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="s_c_m_d_8h_source.html#l00096">96</a> of file <a class="el" href="s_c_m_d_8h_source.html">sCMD.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="s_c_m_d_8h_source.html#l00124">124</a> of file <a class="el" href="s_c_m_d_8h_source.html">sCMD.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a9e7ca0b6f0b25fbf1fb0a125f0f4cc8a" name="a9e7ca0b6f0b25fbf1fb0a125f0f4cc8a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a9e7ca0b6f0b25fbf1fb0a125f0f4cc8a">&#9670;&#160;</a></span>CMDHandler()</h2>
@@ -207,14 +207,14 @@ template&lt;uint8_t max&gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>No return value. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="s_c_m_d_8h_source.html#l00111">111</a> of file <a class="el" href="s_c_m_d_8h_source.html">sCMD.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="s_c_m_d_8h_source.html#l00139">139</a> of file <a class="el" href="s_c_m_d_8h_source.html">sCMD.h</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_c_m_d_handler_a9e7ca0b6f0b25fbf1fb0a125f0f4cc8a_cgraph.png" border="0" usemap="#aclass_c_m_d_handler_a9e7ca0b6f0b25fbf1fb0a125f0f4cc8a_cgraph" alt=""/></div>
 <map name="aclass_c_m_d_handler_a9e7ca0b6f0b25fbf1fb0a125f0f4cc8a_cgraph" id="aclass_c_m_d_handler_a9e7ca0b6f0b25fbf1fb0a125f0f4cc8a_cgraph">
 <area shape="rect" title="CMD handler constructor." alt="" coords="5,5,181,31"/>
-<area shape="rect" href="class_c_m_d_handler.html#a296dc2f654b585e7cb29caa69452d432" title="Set delimiter character." alt="" coords="229,5,401,31"/>
+<area shape="rect" href="class_c_m_d_handler.html#a54ef63e2e190efe814b5cfadc1e8c781" title="Set delimiter character." alt="" coords="229,5,401,31"/>
 </map>
 </div>
 
@@ -249,14 +249,14 @@ template&lt;uint8_t max&gt; </div>
 <p>CMD handler deconstructor. </p>
 <dl class="section return"><dt>Returns</dt><dd>No return value. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="s_c_m_d_8h_source.html#l00131">131</a> of file <a class="el" href="s_c_m_d_8h_source.html">sCMD.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="s_c_m_d_8h_source.html#l00159">159</a> of file <a class="el" href="s_c_m_d_8h_source.html">sCMD.h</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_c_m_d_handler_ab0dff8dad9b29c91453a4f8c689a9c47_cgraph.png" border="0" usemap="#aclass_c_m_d_handler_ab0dff8dad9b29c91453a4f8c689a9c47_cgraph" alt=""/></div>
 <map name="aclass_c_m_d_handler_ab0dff8dad9b29c91453a4f8c689a9c47_cgraph" id="aclass_c_m_d_handler_ab0dff8dad9b29c91453a4f8c689a9c47_cgraph">
 <area shape="rect" title="CMD handler deconstructor." alt="" coords="5,5,189,31"/>
-<area shape="rect" href="class_c_m_d_handler.html#a296dc2f654b585e7cb29caa69452d432" title="Set delimiter character." alt="" coords="237,5,409,31"/>
+<area shape="rect" href="class_c_m_d_handler.html#a54ef63e2e190efe814b5cfadc1e8c781" title="Set delimiter character." alt="" coords="237,5,409,31"/>
 </map>
 </div>
 
@@ -311,21 +311,12 @@ template&lt;uint8_t max&gt; </div>
 <dl class="section warning"><dt>Warning</dt><dd>This function modifies <code>input</code> C-string! </dd></dl>
 <dl class="section note"><dt>Note</dt><dd>This function parses input C-string from left to right. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="s_c_m_d_8h_source.html#l00157">157</a> of file <a class="el" href="s_c_m_d_8h_source.html">sCMD.h</a>.</p>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="class_c_m_d_handler_a81e71d6d511bd21237c40366bc31cf59_cgraph.png" border="0" usemap="#aclass_c_m_d_handler_a81e71d6d511bd21237c40366bc31cf59_cgraph" alt=""/></div>
-<map name="aclass_c_m_d_handler_a81e71d6d511bd21237c40366bc31cf59_cgraph" id="aclass_c_m_d_handler_a81e71d6d511bd21237c40366bc31cf59_cgraph">
-<area shape="rect" title="Parse and execute input C&#45;string." alt="" coords="5,5,129,31"/>
-<area shape="rect" href="group__s_c_m_d.html#gaf825bf80ddd1a52d68d737ea93e0f621" title="Find input command in cmdList." alt="" coords="177,5,248,31"/>
-</map>
-</div>
+<p class="definition">Definition at line <a class="el" href="s_c_m_d_8h_source.html#l00186">186</a> of file <a class="el" href="s_c_m_d_8h_source.html">sCMD.h</a>.</p>
 
 </div>
 </div>
-<a id="aa8501ee9fae636c4d0fc2311cab3a54b" name="aa8501ee9fae636c4d0fc2311cab3a54b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa8501ee9fae636c4d0fc2311cab3a54b">&#9670;&#160;</a></span>getDelimiter()</h2>
+<a id="ae9ba05153e1ceda678e45ac52f151102" name="ae9ba05153e1ceda678e45ac52f151102"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae9ba05153e1ceda678e45ac52f151102">&#9670;&#160;</a></span>getDelimiter()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -338,7 +329,7 @@ template&lt;uint8_t max&gt; </div>
         <tr>
           <td class="memname">char <a class="el" href="class_c_m_d_handler.html">CMDHandler</a>&lt; max &gt;::getDelimiter </td>
           <td>(</td>
-          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramtype"><a class="el" href="group__s_c_m_d.html#gab7b50b228ddfc95179ddc0b5f3541c78">sCMD_del_t</a>&#160;</td>
           <td class="paramname"><em>type</em></td><td>)</td>
           <td> const</td>
         </tr>
@@ -353,18 +344,18 @@ template&lt;uint8_t max&gt; </div>
 <p>Get delimiter character. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">type</td><td>Delimiter type. </td></tr>
+    <tr><td class="paramname">type</td><td>Delimiter type. See <a class="el" href="group__s_c_m_d.html#gab7b50b228ddfc95179ddc0b5f3541c78">sCMD_del_t</a> </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Configured delimiter. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="s_c_m_d_8h_source.html#l00256">256</a> of file <a class="el" href="s_c_m_d_8h_source.html">sCMD.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="s_c_m_d_8h_source.html#l00285">285</a> of file <a class="el" href="s_c_m_d_8h_source.html">sCMD.h</a>.</p>
 
 </div>
 </div>
-<a id="a296dc2f654b585e7cb29caa69452d432" name="a296dc2f654b585e7cb29caa69452d432"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a296dc2f654b585e7cb29caa69452d432">&#9670;&#160;</a></span>setDelimiter()</h2>
+<a id="a54ef63e2e190efe814b5cfadc1e8c781" name="a54ef63e2e190efe814b5cfadc1e8c781"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a54ef63e2e190efe814b5cfadc1e8c781">&#9670;&#160;</a></span>setDelimiter()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -377,7 +368,7 @@ template&lt;uint8_t max&gt; </div>
         <tr>
           <td class="memname">void <a class="el" href="class_c_m_d_handler.html">CMDHandler</a>&lt; max &gt;::setDelimiter </td>
           <td>(</td>
-          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramtype"><a class="el" href="group__s_c_m_d.html#gab7b50b228ddfc95179ddc0b5f3541c78">sCMD_del_t</a>&#160;</td>
           <td class="paramname"><em>type</em>, </td>
         </tr>
         <tr>
@@ -402,19 +393,19 @@ template&lt;uint8_t max&gt; </div>
 <p>Set delimiter character. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">type</td><td>Delimiter type. </td></tr>
-    <tr><td class="paramname">del</td><td>Delimiter character. </td></tr>
+    <tr><td class="paramname">type</td><td>Delimiter type. See <a class="el" href="group__s_c_m_d.html#gab7b50b228ddfc95179ddc0b5f3541c78">sCMD_del_t</a> </td></tr>
+    <tr><td class="paramname">del</td><td>New delimiter. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>No return value. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="s_c_m_d_8h_source.html#l00244">244</a> of file <a class="el" href="s_c_m_d_8h_source.html">sCMD.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="s_c_m_d_8h_source.html#l00273">273</a> of file <a class="el" href="s_c_m_d_8h_source.html">sCMD.h</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="class_c_m_d_handler_a296dc2f654b585e7cb29caa69452d432_icgraph.png" border="0" usemap="#aclass_c_m_d_handler_a296dc2f654b585e7cb29caa69452d432_icgraph" alt=""/></div>
-<map name="aclass_c_m_d_handler_a296dc2f654b585e7cb29caa69452d432_icgraph" id="aclass_c_m_d_handler_a296dc2f654b585e7cb29caa69452d432_icgraph">
+<div class="center"><img src="class_c_m_d_handler_a54ef63e2e190efe814b5cfadc1e8c781_icgraph.png" border="0" usemap="#aclass_c_m_d_handler_a54ef63e2e190efe814b5cfadc1e8c781_icgraph" alt=""/></div>
+<map name="aclass_c_m_d_handler_a54ef63e2e190efe814b5cfadc1e8c781_icgraph" id="aclass_c_m_d_handler_a54ef63e2e190efe814b5cfadc1e8c781_icgraph">
 <area shape="rect" title="Set delimiter character." alt="" coords="237,31,409,56"/>
 <area shape="rect" href="class_c_m_d_handler.html#a9e7ca0b6f0b25fbf1fb0a125f0f4cc8a" title="CMD handler constructor." alt="" coords="9,5,185,31"/>
 <area shape="rect" href="class_c_m_d_handler.html#ab0dff8dad9b29c91453a4f8c689a9c47" title="CMD handler deconstructor." alt="" coords="5,55,189,80"/>
@@ -432,7 +423,7 @@ Here is the caller graph for this function:</div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_c_m_d_handler.html">CMDHandler</a></li>
-    <li class="footer">Generated on Sun Dec 25 2022 22:15:15 for sCMD by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5 </li>
+    <li class="footer">Generated on Wed Feb 22 2023 20:15:33 for sCMD by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5 </li>
   </ul>
 </div>
 </body>
