@@ -23,6 +23,15 @@ Example: `CMD<4> cmd = CMD<4>(list, 2, fallback, ';', ':', ',');` where:
 - `:` is command to arguments delimiter.
 - `,` is argument to argument delimiter.
 
+`list` is an array with commands, handlers and command descriptions.
+```
+CMDList cmdList[] = {
+	SCMD_ADD(help, ""), // No description
+	SCMD_ADD(reset, "Reset the device"),
+	SCMD_ADD(info, "Get device info")
+};
+```
+
 Check library documentation and example codes for more information.
 Library documentation is available at `.docs/html/index.html`.
 Example applications are available at `examples` folder. All examples are made with STM HAL framework.

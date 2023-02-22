@@ -26,7 +26,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">sCMD<span id="projectnumber">&#160;v1.0r1</span>
+   <div id="projectname">sCMD<span id="projectnumber">&#160;v1.0r2</span>
    </div>
    <div id="projectbrief">Frameworkless simple command handler written in C++.</div>
   </td>
@@ -98,7 +98,7 @@ $(document).ready(function(){initNavTree('struct_c_m_d_list.html',''); initResiz
 </div><!--header-->
 <div class="contents">
 
-<p>Struct for command.  
+<p>Struct for command list.  
  <a href="struct_c_m_d_list.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="s_c_m_d_8h_source.html">sCMD.h</a>&gt;</code></p>
@@ -111,11 +111,14 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:a9caafd87cedc702f14a47a3a4089301c"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="group__s_c_m_d.html#gab7d31f894b743026908bea0c58929204">cmdH</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_c_m_d_list.html#a9caafd87cedc702f14a47a3a4089301c">cmdHandler</a></td></tr>
 <tr class="memdesc:a9caafd87cedc702f14a47a3a4089301c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to command function. See <a class="el" href="group__s_c_m_d.html#gab7d31f894b743026908bea0c58929204">cmdH</a>.  <a href="struct_c_m_d_list.html#a9caafd87cedc702f14a47a3a4089301c">More...</a><br /></td></tr>
 <tr class="separator:a9caafd87cedc702f14a47a3a4089301c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af9e8f7efc222908a587b3cc9d5f7a2ae"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_c_m_d_list.html#af9e8f7efc222908a587b3cc9d5f7a2ae">cmdDescription</a> = &quot;&quot;</td></tr>
+<tr class="memdesc:af9e8f7efc222908a587b3cc9d5f7a2ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Command description.  <a href="struct_c_m_d_list.html#af9e8f7efc222908a587b3cc9d5f7a2ae">More...</a><br /></td></tr>
+<tr class="separator:af9e8f7efc222908a587b3cc9d5f7a2ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p >Struct for command. </p>
+<div class="textblock"><p >Struct for command list. </p>
 
-<p class="definition">Definition at line <a class="el" href="s_c_m_d_8h_source.html#l00070">70</a> of file <a class="el" href="s_c_m_d_8h_source.html">sCMD.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="s_c_m_d_8h_source.html#l00110">110</a> of file <a class="el" href="s_c_m_d_8h_source.html">sCMD.h</a>.</p>
 </div><h2 class="groupheader">Member Data Documentation</h2>
 <a id="abdbdb8c1725681c7af26692f4e7c7d78" name="abdbdb8c1725681c7af26692f4e7c7d78"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#abdbdb8c1725681c7af26692f4e7c7d78">&#9670;&#160;</a></span>cmd</h2>
@@ -131,7 +134,25 @@ Public Attributes</h2></td></tr>
 
 <p>Command C-string. </p>
 
-<p class="definition">Definition at line <a class="el" href="s_c_m_d_8h_source.html#l00071">71</a> of file <a class="el" href="s_c_m_d_8h_source.html">sCMD.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="s_c_m_d_8h_source.html#l00111">111</a> of file <a class="el" href="s_c_m_d_8h_source.html">sCMD.h</a>.</p>
+
+</div>
+</div>
+<a id="af9e8f7efc222908a587b3cc9d5f7a2ae" name="af9e8f7efc222908a587b3cc9d5f7a2ae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af9e8f7efc222908a587b3cc9d5f7a2ae">&#9670;&#160;</a></span>cmdDescription</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* CMDList::cmdDescription = &quot;&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Command description. </p>
+
+<p class="definition">Definition at line <a class="el" href="s_c_m_d_8h_source.html#l00113">113</a> of file <a class="el" href="s_c_m_d_8h_source.html">sCMD.h</a>.</p>
 
 </div>
 </div>
@@ -149,7 +170,7 @@ Public Attributes</h2></td></tr>
 
 <p>Pointer to command function. See <a class="el" href="group__s_c_m_d.html#gab7d31f894b743026908bea0c58929204">cmdH</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="s_c_m_d_8h_source.html#l00072">72</a> of file <a class="el" href="s_c_m_d_8h_source.html">sCMD.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="s_c_m_d_8h_source.html#l00112">112</a> of file <a class="el" href="s_c_m_d_8h_source.html">sCMD.h</a>.</p>
 
 </div>
 </div>
@@ -162,7 +183,7 @@ Public Attributes</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="struct_c_m_d_list.html">CMDList</a></li>
-    <li class="footer">Generated on Sun Dec 25 2022 22:15:15 for sCMD by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5 </li>
+    <li class="footer">Generated on Wed Feb 22 2023 20:20:01 for sCMD by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5 </li>
   </ul>
 </div>
 </body>

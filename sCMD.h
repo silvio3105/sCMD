@@ -44,11 +44,33 @@ This License shall be included in all methodal textual files.
 */
 
 
-// ----- MACRO DEFINITIONS
-// DELIMITER TYPES
-#define sCMD_CC			0 /**< @brief Delimiter between commands. */
-#define sCMD_CA			1 /**< @brief Delimiter between command and arguments. */
-#define sCMD_AA			2 /**< @brief Delimiter between arguments. */
+// ----- CODE SNIPPETS
+/**
+ * @brief Get command handler function for \c _cmd
+ * 
+ * @param _cmd Command name.
+ */
+#define SCMD_GET(_cmd) \
+	sCMD##_cmd
+
+/**
+ * @brief Code snippet for adding command into command list.
+ * 
+ * @param _cmd Command name.
+ * @param _description Command description.
+ */
+#define SCMD_ADD(_cmd, _description) \
+	{ #_cmd, SCMD_GET(_cmd), _description }
+
+/**
+ * @brief Code snippet for creating command handler declaration and definition.
+ * 
+ * @param _cmd Command name.
+ * 
+ * @note Command handler is static.
+ */
+#define SCMD_HANDLER(_cmd) \
+	static void SCMD_GET(_cmd)(const char** args, const uint8_t argCnt)
 
 
 // ----- TYPEDEFS
@@ -61,39 +83,45 @@ This License shall be included in all methodal textual files.
  */
 typedef void (*cmdH)(const char** args, const uint8_t argCnt);
 
-
-// ----- STRUCTS
 /**
- * @brief Struct for command.
+ * @brief Typedef for command index.
  * 
  */
-struct CMDList {
-	const char* cmd; /**< @brief Command C-string. */
-	const cmdH cmdHandler; /**< @brief Pointer to command function. See \ref cmdH */
+typedef int16_t sCMDIdx;
+
+
+// ----- ENUMS
+/**
+ * @brief Enum for delimiter types.
+ * 
+ */
+enum sCMD_del_t : uint8_t {
+	sCMD_CC = 0, /**< @brief Delimiter between commands. */
+	sCMD_CA, /**< @brief Delimiter between command and argument. */
+	sCMD_AA /**< @brief Delimiter between arguments inside command. */
 };
 
 
-// ----- FUNCTION DECLARATIONS
+// ----- STRUCTS
 /**
- * @brief Find \c input command in \c cmdList
+ * @brief Struct for command list.
  * 
- * @param input Pointer to command C-string.
- * @param cmdList Pointer to external command list.
- * @param len Length of \c cmdList
- * @return \c -1 if command is not found.
- * @return Index of command in \c cmdList if command is found.
  */
-int16_t findCmd(const char* input, const CMDList* cmdList, const uint16_t len);
+struct sCMDList {
+	const char* cmd; /**< @brief Command C-string. */
+	const cmdH cmdHandler; /**< @brief Pointer to command function. See \ref cmdH */
+	const char* cmdDescription = ""; /**< @brief Command description. */
+};
 
 
 // ----- CLASSES
 /**
- * @brief Class for command hanlder.
+ * @brief Class for command handler.
  * 
  * @tparam max Maximum number of arguments command handler can handle for one command.
  */
 template <uint8_t max>
-class CMDHandler {
+class sCMD {
 	// PUBLIC STUFF
 	public:
 	// CONSTRUCTOR & DECONSTRUCTOR METHOD DECLARATIONS
@@ -108,7 +136,7 @@ class CMDHandler {
 	 * @param aaDelimiter Delimiter character between arguments. Default delimiter is \c ,
 	 * @return No return value.
 	 */
-	CMDHandler(const CMDList* list, uint16_t len, cmdH fallback,  char ccDelimiter = ';', char caDelimiter = ',', char aaDelimiter = ',')
+	sCMD(const sCMDList* list, uint16_t len, cmdH fallback,  char ccDelimiter = ';', char caDelimiter = ',', char aaDelimiter = ',')
 	{
 		// Set command list
 		cmdList = list;
@@ -118,9 +146,9 @@ class CMDHandler {
 		cmdFallback = fallback;
 
 		// Set delimiters
-		setDelimiter(sCMD_CC, ccDelimiter);
-		setDelimiter(sCMD_CA, caDelimiter);
-		setDelimiter(sCMD_AA, aaDelimiter);		
+		setDelimiter(sCMD_del_t::sCMD_CC, ccDelimiter);
+		setDelimiter(sCMD_del_t::sCMD_CA, caDelimiter);
+		setDelimiter(sCMD_del_t::sCMD_AA, aaDelimiter);		
 	}
 
 	/**
@@ -128,7 +156,7 @@ class CMDHandler {
 	 * 
 	 * @return No return value.
 	 */
-	~CMDHandler(void)
+	~sCMD(void)
 	{
 		// Reset command list
 		cmdList = nullptr;
@@ -138,10 +166,11 @@ class CMDHandler {
 		cmdFallback = nullptr;
 
 		// Reset delimiters
-		setDelimiter(sCMD_CC, '\0');
-		setDelimiter(sCMD_CA, '\0');
-		setDelimiter(sCMD_AA, '\0');		
+		setDelimiter(sCMD_del_t::sCMD_CC, '\0');
+		setDelimiter(sCMD_del_t::sCMD_CA, '\0');
+		setDelimiter(sCMD_del_t::sCMD_AA, '\0');		
 	}
+
 
 	// METHOD DECLARATIONS
 	/**
@@ -160,7 +189,7 @@ class CMDHandler {
 		char* nextArg = nullptr;
 		char* currCmd = nullptr;
 		char* currArg = nullptr;	
-		int16_t cmdIdx = -1;
+		sCMDIdx idx = -1;
 		uint8_t argCnt = 0;
 		uint8_t cmdCnt = 0;
 
@@ -214,14 +243,14 @@ class CMDHandler {
 			if (*currCmd)
 			{
 				// Find command index in command list
-				cmdIdx = findCmd(currCmd, cmdList, cmdListLen);
+				idx = findCmd(currCmd);
 		
 				// Call fallback handler if command was not found
-				if (cmdIdx == -1) cmdFallback((const char**)currCmd, 0);
+				if (idx == -1) cmdFallback((const char**)currCmd, 0);
 				else // Command is found
 				{		
 					// Call command arguments
-					cmdList[cmdIdx].cmdHandler((const char**)args, argCnt);
+					cmdList[idx].cmdHandler((const char**)args, argCnt);
 
 					// Increase command counter
 					cmdCnt++;
@@ -237,11 +266,11 @@ class CMDHandler {
 	/**
 	 * @brief Set delimiter character.
 	 * 
-	 * @param type Delimiter type.
-	 * @param del Delimiter character.
+	 * @param type Delimiter type. See \ref sCMD_del_t
+	 * @param del New delimiter.
 	 * @return No return value.
 	 */
-	inline void setDelimiter(uint8_t type, char del)
+	inline void setDelimiter(sCMD_del_t type, char del)
 	{
 		// Set delimiter for the type
 		delimiter[type] = del;
@@ -250,10 +279,10 @@ class CMDHandler {
 	/**
 	 * @brief Get delimiter character.
 	 * 
-	 * @param type Delimiter type.
+	 * @param type Delimiter type. See \ref sCMD_del_t
 	 * @return Configured delimiter.
 	 */
-	inline char getDelimiter(uint8_t type) const
+	inline char getDelimiter(sCMD_del_t type) const
 	{
 		// Get delimiter for the type
 		return delimiter[type];
@@ -270,11 +299,31 @@ class CMDHandler {
 	 * Function parameter \c args points to command C-string that does not exist. See \ref cmdH
 	 */
 	cmdH cmdFallback = nullptr;	
-	const CMDList* cmdList; /**< @brief Pointer to external list of commands.  */
+	const sCMDList* cmdList; /**< @brief Pointer to external list of commands.  */
 	uint8_t maxArgs = max; /**< @brief Length of \ref args array. */
 	char delimiter[3] = { '\0', '\0', '\0' }; /**< @brief Array with CC, CA and AA delimiters. */
 	char* args[max]; /**< @brief Pointer to all command's arguments. */	
 	uint16_t cmdListLen = 0; /**< @brief Length of \ref cmdList */
+
+	// METHODS
+	/**
+	 * @brief Find command \c cmd in \ref cmdList
+	 * 
+	 * @param cmd Command to find. Must end with \c NULL char
+	 * @return \c -1 if command is not found.
+	 * @return Command index in \ref cmdList
+	 */
+	sCMDIdx findCmd(const char* cmd) const
+	{
+		for (uint16_t i = 0; i < cmdListLen; i++)
+		{
+			// If command is found, return index
+			if (sStd::cmp(cmd, cmdList[i].cmd) == SSTD_OK) return i;
+		}
+
+		// Command is not found
+		return -1;
+	}	
 };
 
 
