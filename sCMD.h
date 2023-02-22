@@ -87,7 +87,7 @@ typedef void (*cmdH)(const char** args, const uint8_t argCnt);
  * @brief Typedef for command index.
  * 
  */
-typedef int16_t cmdIdx;
+typedef int16_t sCMDIdx;
 
 
 // ----- ENUMS
@@ -107,7 +107,7 @@ enum sCMD_del_t : uint8_t {
  * @brief Struct for command list.
  * 
  */
-struct CMDList {
+struct sCMDList {
 	const char* cmd; /**< @brief Command C-string. */
 	const cmdH cmdHandler; /**< @brief Pointer to command function. See \ref cmdH */
 	const char* cmdDescription = ""; /**< @brief Command description. */
@@ -121,7 +121,7 @@ struct CMDList {
  * @tparam max Maximum number of arguments command handler can handle for one command.
  */
 template <uint8_t max>
-class CMDHandler {
+class sCMD {
 	// PUBLIC STUFF
 	public:
 	// CONSTRUCTOR & DECONSTRUCTOR METHOD DECLARATIONS
@@ -136,7 +136,7 @@ class CMDHandler {
 	 * @param aaDelimiter Delimiter character between arguments. Default delimiter is \c ,
 	 * @return No return value.
 	 */
-	CMDHandler(const CMDList* list, uint16_t len, cmdH fallback,  char ccDelimiter = ';', char caDelimiter = ',', char aaDelimiter = ',')
+	sCMD(const sCMDList* list, uint16_t len, cmdH fallback,  char ccDelimiter = ';', char caDelimiter = ',', char aaDelimiter = ',')
 	{
 		// Set command list
 		cmdList = list;
@@ -156,7 +156,7 @@ class CMDHandler {
 	 * 
 	 * @return No return value.
 	 */
-	~CMDHandler(void)
+	~sCMD(void)
 	{
 		// Reset command list
 		cmdList = nullptr;
@@ -189,7 +189,7 @@ class CMDHandler {
 		char* nextArg = nullptr;
 		char* currCmd = nullptr;
 		char* currArg = nullptr;	
-		cmdIdx idx = -1;
+		sCMDIdx idx = -1;
 		uint8_t argCnt = 0;
 		uint8_t cmdCnt = 0;
 
@@ -299,7 +299,7 @@ class CMDHandler {
 	 * Function parameter \c args points to command C-string that does not exist. See \ref cmdH
 	 */
 	cmdH cmdFallback = nullptr;	
-	const CMDList* cmdList; /**< @brief Pointer to external list of commands.  */
+	const sCMDList* cmdList; /**< @brief Pointer to external list of commands.  */
 	uint8_t maxArgs = max; /**< @brief Length of \ref args array. */
 	char delimiter[3] = { '\0', '\0', '\0' }; /**< @brief Array with CC, CA and AA delimiters. */
 	char* args[max]; /**< @brief Pointer to all command's arguments. */	
@@ -313,7 +313,7 @@ class CMDHandler {
 	 * @return \c -1 if command is not found.
 	 * @return Command index in \ref cmdList
 	 */
-	cmdIdx findCmd(const char* cmd) const
+	sCMDIdx findCmd(const char* cmd) const
 	{
 		for (uint16_t i = 0; i < cmdListLen; i++)
 		{
